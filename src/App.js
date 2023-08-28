@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+// import "./App.css";
+import Album from "./Album/Album";
+import CustomItemContext from "./action/itemContext";
+import Navbar from "./Navbar/Navbar";
+import { useState } from "react";
+import Modal from "./Modal/Modal";
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <CustomItemContext>
+        {showModal ? (
+          <Modal setShowModal={setShowModal} />
+        ) : (
+          <>
+            <Navbar setShowModal={setShowModal} />
+
+            <Album />
+          </>
+        )}
+      </CustomItemContext>
+    </>
   );
 }
 
